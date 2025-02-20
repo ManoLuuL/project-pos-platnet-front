@@ -6,27 +6,27 @@ import { Observable } from 'rxjs';
   providedIn: 'root'
 })
 export class CursoService {
-  private readonly urlBase = 'https://localhost:7128';
+  private readonly urlBase = 'https://localhost:7128/curso';
 
   constructor(private http: HttpClient) { }
 
-  listar() : Observable<any> {
+  listar(): Observable<any> {
     return this.http.get<any>(`${this.urlBase}/listar`);
   }
 
-  obter(id: any) : Observable<any> {
+  obter(id: any): Observable<any> {
     return this.http.get<any>(`${this.urlBase}/obter/${id}`);
-  }  
+  }
 
-  adicionar(curso: any) : Observable<any> {
+  adicionar(curso: any): Observable<any> {
     return this.http.post<any>(`${this.urlBase}/adicionar`, curso);
   }
 
-  atualizar(curso: any) : Observable<any> {
+  atualizar(curso: any): Observable<any> {
     return this.http.put<any>(`${this.urlBase}/atualizar`, curso);
-  }  
+  }
 
-  remover(id: any) : Observable<any> {
+  remover(id: any): Observable<any> {
     return this.http.delete<any>(`${this.urlBase}/remover/${id}`);
   }
 }
