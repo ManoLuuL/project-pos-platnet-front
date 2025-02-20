@@ -1,40 +1,43 @@
-<h3>Listagem de Cursos</h3>
-<div class="d-flex">
-    <input type="text" [(ngModel)]="filtro" (input)="filtrarCursos()" class="form-control me-2" placeholder="Digite para filtrar..." />
-    <a class="btn btn-primary" routerLink="/curso/adicionar" style="width: 150px;">
-        <i class="fa-solid fa-circle-plus"></i>
-        Novo Curso
-    </a>
+<div class="container mt-4">
+    <h3 class="mb-3 text-primary">Listagem de Cursos</h3>
+
+    <div class="d-flex flex-column flex-md-row align-items-center mb-3 gap-2">
+        <input type="text" [(ngModel)]="filtro" (input)="filtrarCursos()" class="form-control shadow-sm rounded"
+            placeholder="Digite para filtrar..." />
+        <a class="btn btn-primary d-flex align-items-center gap-2 px-3" routerLink="/curso/adicionar"
+            style="width: 160px;">
+            <i class="fa-solid fa-circle-plus"></i> Novo Curso
+        </a>
+    </div>
+
+    <div class="table-responsive">
+        <table class="table table-striped table-hover shadow-sm rounded overflow-hidden">
+            <thead class="table-dark">
+                <tr>
+                    <th>Nome</th>
+                    <th>Período</th>
+                    <th class="text-center" style="width: 25%;">Ações</th>
+                </tr>
+            </thead>
+            <tbody>
+                @for (curso of cursosFiltrados; track $index) {
+                <tr>
+                    <td>{{ curso.nome }}</td>
+                    <td>{{ curso.periodo }}</td>
+                    <td class="text-center d-flex justify-content-center gap-2">
+                        <a [routerLink]="['/curso/editar', curso.id]" class="btn btn-secondary btn-sm">
+                            <i class="fa-regular fa-pen-to-square"></i> Editar
+                        </a>
+                        <button class="btn btn-warning btn-sm" (click)="editar(curso.id)">
+                            <i class="fa-solid fa-pencil"></i> Editar TS
+                        </button>
+                        <button class="btn btn-danger btn-sm" (click)="removerCurso(curso.id)">
+                            <i class="fa-solid fa-trash-can"></i> Excluir
+                        </button>
+                    </td>
+                </tr>
+                }
+            </tbody>
+        </table>
+    </div>
 </div>
-<hr>
-<table class="table table-striped table-hover">
-    <thead>
-        <tr>
-            <th>Nome</th>
-            <th>Período</th>
-            <th class="center" style="width: 25%;">Ações</th>
-        </tr>
-    </thead>
-    <tbody>
-        @for (curso of cursosFiltrados; track $index) {
-            <tr>
-                <td>{{ curso.nome }}</td>
-                <td>{{ curso.periodo }}</td>
-                <td class="center">
-                    <a [routerLink]="['/curso/editar', curso.id]" class="btn btn-secondary btn-sm mr-5">
-                        <i class="fa-regular fa-pen-to-square"></i>
-                        Editar
-                    </a>                        
-                    <button class="btn btn-secondary btn-sm mr-5" (click)="editar(curso.id)">
-                        <i class="fa-solid fa-pencil"></i>
-                        Editar via TS
-                    </button>
-                    <button class="btn btn-danger btn-sm" (click)="removerCurso(curso.id)">
-                        <i class="fa-solid fa-trash-can"></i>
-                        Excluir
-                    </button>
-                </td>
-            </tr>
-        }
-    </tbody>
-</table>
