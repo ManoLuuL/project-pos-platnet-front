@@ -6,7 +6,7 @@ import { Observable } from 'rxjs';
   providedIn: 'root'
 })
 export class CursoService {
-  private readonly urlBase = 'https://localhost:7128/curso';
+  private readonly urlBase = 'http://localhost:5029/curso';
 
   constructor(private http: HttpClient) { }
 

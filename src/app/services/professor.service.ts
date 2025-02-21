@@ -6,7 +6,7 @@ import { Observable } from 'rxjs';
     providedIn: 'root'
 })
 export class ProfessorService {
-    private readonly urlBase = 'https://localhost:7128/professor';
+    private readonly urlBase = 'http://localhost:5029/professor';
 
     constructor(private http: HttpClient) { }
 
